@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlShortenerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UrlShortenerController::class, 'index'])
+    ->name('url-shortener.index');
+
+Route::post('/shorten-url', [UrlShortenerController::class, 'shorten'])
+    ->name('url-shortener.shorten');
+
+Route::get('/{shortened_url:path}', [UrlShortenerController::class, 'redirect'])
+    ->name('url-shortener.redirect');

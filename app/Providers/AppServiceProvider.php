@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(\App\Contracts\Services\UrlShortener\UrlShortenerService::class, static function ($app) {
+            return $app->make(\App\Services\UrlShortener\UrlShortenerService::class, ['pathLength' => 5]);
+        });
     }
 
     /**
@@ -25,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//
     }
 }

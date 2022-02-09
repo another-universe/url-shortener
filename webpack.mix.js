@@ -11,7 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/js/app.js', 'public/assets/js/app.js');
+
+mix.sass('resources/sass/styles.scss', 'public/assets/css/styles.css');
+
+mix.vue();
+mix.extract();
+mix.version();
+mix.sourceMaps(false, 'source-map');
